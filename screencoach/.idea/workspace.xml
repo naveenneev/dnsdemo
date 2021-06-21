@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a72647a3-ae5d-487a-9402-c5f85f302fa5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ios/Runner/DNSLookup.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/DNSLookup.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/resolv.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/test.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1u1r3gUZuHvCQYAh6rsfMNPQ64y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a72647a3-ae5d-487a-9402-c5f85f302fa5" name="Default Changelist" comment="" />
+      <created>1623843747599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623843747599</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1593" height="196" key="GridCell.Tab.0.bottom" timestamp="1623946078327">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state width="1593" height="196" key="GridCell.Tab.0.bottom/0.23.1792.1009@0.23.1792.1009" timestamp="1623946078327" />
+    <state width="1593" height="196" key="GridCell.Tab.0.center" timestamp="1623946078326">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state width="1593" height="196" key="GridCell.Tab.0.center/0.23.1792.1009@0.23.1792.1009" timestamp="1623946078326" />
+    <state width="1593" height="196" key="GridCell.Tab.0.left" timestamp="1623946078326">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state width="1593" height="196" key="GridCell.Tab.0.left/0.23.1792.1009@0.23.1792.1009" timestamp="1623946078326" />
+    <state width="1593" height="196" key="GridCell.Tab.0.right" timestamp="1623946078327">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state width="1593" height="196" key="GridCell.Tab.0.right/0.23.1792.1009@0.23.1792.1009" timestamp="1623946078327" />
+    <state x="319" y="116" key="SettingsEditor" timestamp="1623844066560">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state x="319" y="116" key="SettingsEditor/0.23.1792.1009@0.23.1792.1009" timestamp="1623844066560" />
+    <state x="460" y="221" width="670" height="676" key="search.everywhere.popup" timestamp="1623928667439">
+      <screen x="0" y="23" width="1792" height="1009" />
+    </state>
+    <state x="460" y="221" width="670" height="676" key="search.everywhere.popup/0.23.1792.1009@0.23.1792.1009" timestamp="1623928667439" />
+  </component>
+</project>
