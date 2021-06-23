@@ -16,6 +16,9 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		C319A3D5267A22570029BF57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C319A3D4267A22560029BF57 /* GoogleService-Info.plist */; };
 		C32E5167267CBD3A0038AF59 /* DNSLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E5166267CBD3A0038AF59 /* DNSLookup.m */; };
+		C3FD46F8268366CE00FDB4A6 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD46F7268366CE00FDB4A6 /* NetworkExtension.framework */; };
+		C3FD46FA2683689200FDB4A6 /* VPNConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FD46F92683689200FDB4A6 /* VPNConnect.swift */; };
+		C3FD470E26836A5400FDB4A6 /* tldlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FD470D26836A5300FDB4A6 /* tldlist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +55,10 @@
 		C319A3D4267A22560029BF57 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C32E5165267CBD3A0038AF59 /* DNSLookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSLookup.h; sourceTree = "<group>"; };
 		C32E5166267CBD3A0038AF59 /* DNSLookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSLookup.m; sourceTree = "<group>"; };
+		C3FD46F6268366CD00FDB4A6 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		C3FD46F7268366CE00FDB4A6 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		C3FD46F92683689200FDB4A6 /* VPNConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNConnect.swift; sourceTree = "<group>"; };
+		C3FD470D26836A5300FDB4A6 /* tldlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tldlist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3074E20A5C70AAFCDC72396F /* Pods_Runner.framework in Frameworks */,
+				C3FD46F8268366CE00FDB4A6 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +117,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				C3FD470D26836A5300FDB4A6 /* tldlist.swift */,
+				C3FD46F6268366CD00FDB4A6 /* Runner.entitlements */,
 				C319A3D4267A22560029BF57 /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -120,6 +130,7 @@
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				C32E5165267CBD3A0038AF59 /* DNSLookup.h */,
 				C32E5166267CBD3A0038AF59 /* DNSLookup.m */,
+				C3FD46F92683689200FDB4A6 /* VPNConnect.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -127,6 +138,7 @@
 		F6EC05AED6281BDBB9CE4629 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3FD46F7268366CE00FDB4A6 /* NetworkExtension.framework */,
 				774E5C7AD062C64E12E2834C /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -281,7 +293,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				C3FD46FA2683689200FDB4A6 /* VPNConnect.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				C3FD470E26836A5400FDB4A6 /* tldlist.swift in Sources */,
 				C32E5167267CBD3A0038AF59 /* DNSLookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 7C4R54BRA9;
@@ -549,6 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 7C4R54BRA9;
@@ -628,6 +644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 7C4R54BRA9;
