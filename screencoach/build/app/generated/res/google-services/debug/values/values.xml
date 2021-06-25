@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">418077903918-l5r5gg4en3280b3vcblo4dpmu7b9g2i7.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">418077903918</string>
+    <string name="google_api_key" translatable="false">AIzaSyAI6aZI2nlZQDCTtclKEEOEoyZdnMPvXm0</string>
+    <string name="google_app_id" translatable="false">1:418077903918:android:965978411e5520600223bf</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAI6aZI2nlZQDCTtclKEEOEoyZdnMPvXm0</string>
+    <string name="google_storage_bucket" translatable="false">screencoach-38db9.appspot.com</string>
+    <string name="project_id" translatable="false">screencoach-38db9</string>
+</resources>
