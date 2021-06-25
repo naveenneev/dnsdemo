@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "418077903918",
+    "project_id": "screencoach-38db9",
+    "storage_bucket": "screencoach-38db9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418077903918:android:965978411e5520600223bf",
+        "android_client_info": {
+          "package_name": "com.example.screencoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418077903918-l5r5gg4en3280b3vcblo4dpmu7b9g2i7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI6aZI2nlZQDCTtclKEEOEoyZdnMPvXm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418077903918-l5r5gg4en3280b3vcblo4dpmu7b9g2i7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "418077903918-30ju7as9k77lclug72bk0l4m0fcump5m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "demo.app.screencoach"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
