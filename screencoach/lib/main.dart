@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:screencoach/core/services/firebase/cloud_service.dart';
 import 'package:screencoach/core/model/dnsmodel.dart';
+import 'package:screencoach/vpn.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -111,6 +113,12 @@ class _MyHomePageState extends State<MyHomePage>
               onTap: (){
                 setState(() {
                   selectedIndex = index + 1;
+                  try {
+                    VPN.startVpn("192.168.43.10", "1.1.1.1");
+                  } on PlatformException catch (e) {
+                    "Failed to Invoke: '${e.message}'.";
+                  }
+
                 });
               },
               leading: CircleAvatar(
