@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage>
                 setState(() {
                   selectedIndex = index + 1;
                   try {
-                    VPN.startVpn("192.168.43.10", "1.1.1.1");
+                    VPN.startVpn(data[index].address);
                   } on PlatformException catch (e) {
                     "Failed to Invoke: '${e.message}'.";
                   }
