@@ -4,9 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:screencoach/core/services/firebase/cloud_service.dart';
 import 'package:screencoach/core/model/dnsmodel.dart';
 import 'package:screencoach/vpn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/utils/storage_util.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await StorageUtil.getInstance();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -41,15 +46,21 @@ class MyHomePage extends StatefulWidget {
 
 
 
-class _MyHomePageState extends State<MyHomePage>
-{
+class _MyHomePageState extends State<MyHomePage> {
+
   int selectedIndex = 0;
   TextEditingController _textFieldController = TextEditingController();
   String codeDialog;
   String valueText;
+  String currentDns;
 
-   _displayTextInputDialog(BuildContext context)
-  {
+  @override
+  void initState() {
+    currentDns = StorageUtil.getString('currentDns');
+    super.initState();
+  }
+
+   _displayTextInputDialog(BuildContext context) {
     _textFieldController.text = "";
     valueText = "";
     return showDialog(
@@ -91,12 +102,23 @@ class _MyHomePageState extends State<MyHomePage>
         });
   }
 
-
   saveNewDNSToCloud ()
   {
      FirebaseAPIService().addDNS({"address" : valueText}).then((value) => {
        setState((){})
      });
+  }
+
+  bool isCurrentDnsServer(String dns) {
+     if(currentDns == '') {
+       return false;
+     } else {
+       if (dns == currentDns) {
+         return true;
+       } else {
+         return false;
+       }
+     }
   }
 
   Widget getListBuilderForData(List<DNSModel> data)
@@ -108,9 +130,10 @@ class _MyHomePageState extends State<MyHomePage>
             margin: EdgeInsets.all(10),
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: index + 1 == selectedIndex ? Colors.amber : Colors.white,
+            color: index + 1 == selectedIndex ? Colors.white : Colors.white,
             child: ListTile(
               onTap: (){
+                StorageUtil.putString('currentDns', data[index].address);
                 setState(() {
                   selectedIndex = index + 1;
                   try {
@@ -118,12 +141,16 @@ class _MyHomePageState extends State<MyHomePage>
                   } on PlatformException catch (e) {
                     "Failed to Invoke: '${e.message}'.";
                   }
-
+                  currentDns = StorageUtil.getString('currentDns');
                 });
               },
               leading: CircleAvatar(
                   backgroundColor: Colors.blue,
                   child: Text(index.toString())),
+              trailing: Visibility(
+                  visible: isCurrentDnsServer(data[index].address),
+                  child: Image.asset('assets/images/connected.png', height: 25, width: 25,)
+              ),
               title: Text(data[index].address),
             ));
       },
@@ -132,7 +159,6 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
