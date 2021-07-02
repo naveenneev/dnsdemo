@@ -90,17 +90,16 @@ public class LocalVpnService extends VpnService {
         } catch (Throwable ex) {
             Log.e(TAG, ex.toString() + "\n" + Log.getStackTraceString(ex));
             return null;
-        }
+            }
     }
 
     private Builder getBuilder() {
 
         Builder builder = new Builder();
         builder.setSession("test");
-        builder.addAddress("10.26.1.9", 32);
-        builder.addRoute("::", 0);
+        builder.addAddress("139.167.221.221", 32);
         builder.addDnsServer(dns);
-
+        //builder.addRoute("0.0.0.0", 0);
 
         // MTU
         int mtu = jni_get_mtu();

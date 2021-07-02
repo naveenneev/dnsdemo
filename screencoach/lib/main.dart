@@ -1,11 +1,12 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:screencoach/core/services/firebase/cloud_service.dart';
 import 'package:screencoach/core/model/dnsmodel.dart';
 import 'package:screencoach/vpn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/utils/connectivity_manager.dart';
 import 'core/utils/storage_util.dart';
 
 
@@ -48,6 +49,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  Map _source = {ConnectivityResult.none: false};
+  MyConnectivity _connectivity = MyConnectivity.instance;
+
   int selectedIndex = 0;
   TextEditingController _textFieldController = TextEditingController();
   String codeDialog;
@@ -57,7 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     currentDns = StorageUtil.getString('currentDns');
+    _connectivity.initialise();
+    _connectivity.myStream.listen((source) {
+      setState(() => _source = source);
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _connectivity.disposeStream();
+    super.dispose();
   }
 
    _displayTextInputDialog(BuildContext context) {
@@ -159,6 +173,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    switch (_source.keys.toList()[0]) {
+      case ConnectivityResult.none:
+        //VPN.startVpn(currentDns);
+        break;
+      case ConnectivityResult.mobile:
+        VPN.startVpn(currentDns);
+        break;
+      case ConnectivityResult.wifi:
+        VPN.startVpn(currentDns);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
