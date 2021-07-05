@@ -1,4 +1,5 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String codeDialog;
   String valueText;
   String currentDns;
+  var ipv4;
 
   @override
   void initState() {
@@ -135,6 +137,11 @@ class _MyHomePageState extends State<MyHomePage> {
      }
   }
 
+  Future<void> getIpv4() async {
+    final ip = await Ipify.ipv4();
+    ipv4 = ip;
+  }
+
   Widget getListBuilderForData(List<DNSModel> data)
   {
     return ListView.builder(
@@ -179,10 +186,13 @@ class _MyHomePageState extends State<MyHomePage> {
         //VPN.startVpn(currentDns);
         break;
       case ConnectivityResult.mobile:
-        VPN.startVpn(currentDns);
+         getIpv4();
+         print(ipv4);
+        //VPN.startVpn(currentDns);
         break;
       case ConnectivityResult.wifi:
-        VPN.startVpn(currentDns);
+        print(ipv4);
+    //VPN.startVpn(currentDns);
     }
 
     return Scaffold(
