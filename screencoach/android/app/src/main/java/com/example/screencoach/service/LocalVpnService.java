@@ -18,6 +18,7 @@ public class LocalVpnService extends VpnService {
     private static final String ACTION_START = "start";
     private static final String ACTION_STOP = "stop";
     public static String dns = "";
+    public static String ip = "";
     private static volatile PowerManager.WakeLock wlInstance = null;
 
     static {
@@ -97,13 +98,12 @@ public class LocalVpnService extends VpnService {
 
         Builder builder = new Builder();
         builder.setSession("test");
-        builder.addAddress("139.167.221.221", 32);
+        builder.addAddress(""+ip, 24);
         builder.addDnsServer(dns);
-        //builder.addRoute("0.0.0.0", 0);
 
         // MTU
         int mtu = jni_get_mtu();
-        Log.i(TAG, "MTU=" + mtu);
+        Log.i(TAG, "MTU=" + mtu + ip + dns);
         builder.setMtu(mtu);
 
         // AAdd list of allowed and disallowed applications

@@ -6,9 +6,10 @@ class VPN {
 
 
   ///Start VPN easily
-  static Future<void> startVpn(String dns) async {
+  static Future<void> startVpn(String ip, String dns) async {
     return _channel.invokeMethod("start", {
-        "dns": dns
+        "dns": dns,
+        "ip": ip
       },
     );
   }

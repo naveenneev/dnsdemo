@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:connectivity/connectivity.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    printIps();
     currentDns = StorageUtil.getString('currentDns');
     _connectivity.initialise();
     _connectivity.myStream.listen((source) {
@@ -137,9 +139,35 @@ class _MyHomePageState extends State<MyHomePage> {
      }
   }
 
-  Future<void> getIpv4() async {
+  /*Future<void> getIpv4() async {
     final ip = await Ipify.ipv4();
     ipv4 = ip;
+    if(ipv4 != null) {
+    }
+  }*/
+
+  void printIps() async {
+    for (var interface in await NetworkInterface.list()) {
+      //if(identical(interface.name, "wlan0")) {
+      print('== Interface: ${interface.name} ==');
+      //if(interface.name == "wlan0"){
+        print('Hello ${interface.addresses.first.address}');
+       // ipv4 = interface.addresses.first;
+
+     // }
+      if(interface.name == "wlan0"){
+      print('Hello ${interface.addresses.first.address}');
+      ipv4 = interface.addresses.first.address;
+
+      }
+
+       // for (var addr in interface.addresses) {
+          //ipv4 = interface.addresses.first.address;
+          print(
+              'rajan bisht $ipv4' );
+     // }
+    //  }
+    }
   }
 
   Widget getListBuilderForData(List<DNSModel> data)
@@ -158,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   selectedIndex = index + 1;
                   try {
-                    VPN.startVpn(data[index].address);
+                    VPN.startVpn(ipv4, data[index].address);
                   } on PlatformException catch (e) {
                     "Failed to Invoke: '${e.message}'.";
                   }
@@ -183,16 +211,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
     switch (_source.keys.toList()[0]) {
       case ConnectivityResult.none:
-        //VPN.startVpn(currentDns);
+        //ipv4 = null;
         break;
       case ConnectivityResult.mobile:
-         getIpv4();
-         print(ipv4);
-        //VPN.startVpn(currentDns);
+        //getIpv44();
+         //getIpv4();
+        printIps();
+        print(ipv4);
+        print('rajan bisht $ipv4');
+        //VPN.startVpn(ipv4, currentDns);
         break;
       case ConnectivityResult.wifi:
-        print(ipv4);
-    //VPN.startVpn(currentDns);
+        printIps();
+        print('rajan $ipv4');
+        //VPN.startVpn(ipv4, currentDns);
     }
 
     return Scaffold(
