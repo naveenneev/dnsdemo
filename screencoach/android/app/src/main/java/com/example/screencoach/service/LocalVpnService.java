@@ -10,7 +10,11 @@ import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.util.Log;
-
+import java.util.Enumeration;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.io.IOException;
 
 public class LocalVpnService extends VpnService {
@@ -18,7 +22,6 @@ public class LocalVpnService extends VpnService {
     private static final String ACTION_START = "start";
     private static final String ACTION_STOP = "stop";
     public static String dns = "";
-    public static String ip = "";
     private static volatile PowerManager.WakeLock wlInstance = null;
 
     static {
@@ -56,13 +59,13 @@ public class LocalVpnService extends VpnService {
     }
 
     private void start() {
-        if (vpn == null) {
+        //if (vpn == null) {
             lastBuilder = getBuilder();
             vpn = startVPN(lastBuilder);
             if (vpn == null)
                 throw new IllegalStateException("start failed");
 
-        }
+        //}
     }
 
     private void stop() {
@@ -98,12 +101,14 @@ public class LocalVpnService extends VpnService {
 
         Builder builder = new Builder();
         builder.setSession("test");
-        builder.addAddress(""+ip, 24);
+        builder.addAddress(getLocalIpAddress(), 24);
         builder.addDnsServer(dns);
+        builder.addRoute("::", 0);
+
 
         // MTU
         int mtu = jni_get_mtu();
-        Log.i(TAG, "MTU=" + mtu + ip + dns);
+        Log.i(TAG, "MTU=" + getLocalIpAddress());
         builder.setMtu(mtu);
 
         // AAdd list of allowed and disallowed applications
@@ -184,4 +189,20 @@ public class LocalVpnService extends VpnService {
         }
     }
 
+    public static String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -59,11 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String codeDialog;
   String valueText;
   String currentDns;
-  var ipv4;
 
   @override
   void initState() {
-    printIps();
     currentDns = StorageUtil.getString('currentDns');
     _connectivity.initialise();
     _connectivity.myStream.listen((source) {
@@ -139,37 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
      }
   }
 
-  /*Future<void> getIpv4() async {
-    final ip = await Ipify.ipv4();
-    ipv4 = ip;
-    if(ipv4 != null) {
-    }
-  }*/
-
-  void printIps() async {
-    for (var interface in await NetworkInterface.list()) {
-      //if(identical(interface.name, "wlan0")) {
-      print('== Interface: ${interface.name} ==');
-      //if(interface.name == "wlan0"){
-        print('Hello ${interface.addresses.first.address}');
-       // ipv4 = interface.addresses.first;
-
-     // }
-      if(interface.name == "wlan0"){
-      print('Hello ${interface.addresses.first.address}');
-      ipv4 = interface.addresses.first.address;
-
-      }
-
-       // for (var addr in interface.addresses) {
-          //ipv4 = interface.addresses.first.address;
-          print(
-              'rajan bisht $ipv4' );
-     // }
-    //  }
-    }
-  }
-
   Widget getListBuilderForData(List<DNSModel> data)
   {
     return ListView.builder(
@@ -186,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   selectedIndex = index + 1;
                   try {
-                    VPN.startVpn(ipv4, data[index].address);
+                    VPN.startVpn(data[index].address);
                   } on PlatformException catch (e) {
                     "Failed to Invoke: '${e.message}'.";
                   }
@@ -209,22 +176,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    switch (_source.keys.toList()[0]) {
+   switch (_source.keys.toList()[0]) {
       case ConnectivityResult.none:
-        //ipv4 = null;
         break;
       case ConnectivityResult.mobile:
-        //getIpv44();
-         //getIpv4();
-        printIps();
-        print(ipv4);
-        print('rajan bisht $ipv4');
-        //VPN.startVpn(ipv4, currentDns);
+          VPN.startVpn(currentDns);
         break;
       case ConnectivityResult.wifi:
-        printIps();
-        print('rajan $ipv4');
-        //VPN.startVpn(ipv4, currentDns);
+          VPN.startVpn(currentDns);
     }
 
     return Scaffold(
@@ -256,109 +215,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
-
-
-
-/*
-
-
-
-class _MyHomePageState extends State<MyHomePage> {
-  // Generating a long list to fill the ListView
-  final List<Map> data = List.generate(5,
-          (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
-
-  var selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Kindacode.com'),
-        ),
-        body: SafeArea(
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (BuildContext ctx, index) {
-                return Card(
-                    margin: EdgeInsets.all(10),
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    // The color depends on this is selected or not
-                    color: index + 1 == selectedIndex ? Colors.amber : Colors.white,
-                    child: ListTile(
-                      onTap: (){
-                        setState(() {
-                          selectedIndex = index + 1;
-                        });
-                      },
-                      leading: CircleAvatar(
-                          backgroundColor: Colors.blue,
-                          child: Text(data[index]['id'].toString())),
-                      title: Text(data[index]['name']),
-                    ));
-              },
-            )
-        )
-    );
-  }
-}
-
-
-
-* */
-
-
-
-
-
-
-
-//
-//
-// class _MyHomePageState extends State<MyHomePage>
-// {
-//   int _counter = 0;
-//
-//   void _incrementCounter()
-//   {
-//     FirebaseAPIService().fetchDNSList().then((value) => {
-//       print("List count = ${value[1].address}")
-//     });
-//
-//     setState(() {
-//       _counter++;
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text(
-//               'You have pushed the button this many times:',
-//             ),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headline4,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }

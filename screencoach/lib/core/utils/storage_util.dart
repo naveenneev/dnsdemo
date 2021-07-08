@@ -21,7 +21,7 @@ class StorageUtil {
   }
 
   // get string
-  static String getString(String key, {String defValue = 'null'}) {
+  static String getString(String key, {String defValue = '185.228.168.90'}) {
     if (_preferences == null) return defValue;
     return _preferences.getString(key) ?? defValue;
   }

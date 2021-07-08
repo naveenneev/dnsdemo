@@ -28,7 +28,6 @@ public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "flutter.native/dns";
     private MethodChannel startVpn;
     private String dns = "";
-    private String ip = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,13 +41,12 @@ public class MainActivity extends FlutterActivity {
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler((call, result) -> {
             if (call.method.equals("start")) {
                 dns = call.argument("dns");
-                ip = call.argument("ip");
-                if(isRunning()) {
-                    stopVpn();
+               // if(isRunning()) {
+                   // stopVpn();
                     startVpn();
-                } else {
-                    startVpn();
-                }
+               // } else {
+                    //startVpn();
+               // }
             }
         });
 
@@ -136,7 +134,6 @@ public class MainActivity extends FlutterActivity {
             //start.setEnabled(false);
             //stop.setEnabled(true);
             LocalVpnService.dns = dns;
-            LocalVpnService.ip = ip;
             LocalVpnService.start(this);
         }
     }
