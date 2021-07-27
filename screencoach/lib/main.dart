@@ -4,13 +4,16 @@ import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:screencoach/core/services/firebase/cloud_service.dart';
 import 'package:screencoach/core/model/dnsmodel.dart';
 import 'package:screencoach/vpn.dart';
 
 import 'core/utils/connectivity_manager.dart';
 import 'core/utils/storage_util.dart';
+import 'mobx/dnslist.dart';
 
+final dnsList = DNSList();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -190,26 +193,43 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FutureBuilder<List<DNSModel>>(
-        future:  FirebaseAPIService().fetchDNSList(), // async work
-        builder: (BuildContext context, AsyncSnapshot<List<DNSModel>> snapshot) {
-          switch (snapshot.connectionState)
-          {
-            case ConnectionState.waiting: return Text('Loading....');
-            default:
-              if (snapshot.hasError)
-                return Text('Error: ${snapshot.error}');
-              else
-                return getListBuilderForData(snapshot.data);
-          }
-        },
+      body: Observer(
+        builder: (_) => getListBuilderForData(dnsList.dnsList),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          _displayTextInputDialog(context);
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      // FutureBuilder<List<DNSModel>>(
+      //   future:  FirebaseAPIService().fetchDNSList(), // async work
+      //   builder: (BuildContext context, AsyncSnapshot<List<DNSModel>> snapshot) {
+      //     switch (snapshot.connectionState)
+      //     {
+      //       case ConnectionState.waiting: return Text('Loading....');
+      //       default:
+      //         if (snapshot.hasError)
+      //           return Text('Error: ${snapshot.error}');
+      //         else
+      //           return getListBuilderForData(snapshot.data);
+      //     }
+      //   },
+      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: (){
+                dnsList.fetchDNSList();
+              },
+              child: Icon(Icons.refresh),
+            ),
+            FloatingActionButton(
+              onPressed: (){
+                _displayTextInputDialog(context);
+              },
+              child: Icon(Icons.add),
+            ),
+          ],
+        ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
