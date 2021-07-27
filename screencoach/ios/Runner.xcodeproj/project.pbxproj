@@ -16,6 +16,8 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		C319A3D5267A22570029BF57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C319A3D4267A22560029BF57 /* GoogleService-Info.plist */; };
 		C32E5167267CBD3A0038AF59 /* DNSLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E5166267CBD3A0038AF59 /* DNSLookup.m */; };
+		C3DDDAF226B030E6003CB74A /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDDAEF26B030E3003CB74A /* KeyChainService.swift */; };
+		C3DDDAF326B030E6003CB74A /* VPN.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDDAF026B030E6003CB74A /* VPN.swift */; };
 		C3FD46F8268366CE00FDB4A6 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD46F7268366CE00FDB4A6 /* NetworkExtension.framework */; };
 		C3FD46FA2683689200FDB4A6 /* VPNConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FD46F92683689200FDB4A6 /* VPNConnect.swift */; };
 		C3FD470E26836A5400FDB4A6 /* tldlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FD470D26836A5300FDB4A6 /* tldlist.swift */; };
@@ -55,6 +57,8 @@
 		C319A3D4267A22560029BF57 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C32E5165267CBD3A0038AF59 /* DNSLookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSLookup.h; sourceTree = "<group>"; };
 		C32E5166267CBD3A0038AF59 /* DNSLookup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSLookup.m; sourceTree = "<group>"; };
+		C3DDDAEF26B030E3003CB74A /* KeyChainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
+		C3DDDAF026B030E6003CB74A /* VPN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPN.swift; sourceTree = "<group>"; };
 		C3FD46F6268366CD00FDB4A6 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		C3FD46F7268366CE00FDB4A6 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		C3FD46F92683689200FDB4A6 /* VPNConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNConnect.swift; sourceTree = "<group>"; };
@@ -117,7 +121,9 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				C3DDDAEF26B030E3003CB74A /* KeyChainService.swift */,
 				C3FD470D26836A5300FDB4A6 /* tldlist.swift */,
+				C3DDDAF026B030E6003CB74A /* VPN.swift */,
 				C3FD46F6268366CD00FDB4A6 /* Runner.entitlements */,
 				C319A3D4267A22560029BF57 /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
@@ -292,8 +298,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3DDDAF326B030E6003CB74A /* VPN.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				C3FD46FA2683689200FDB4A6 /* VPNConnect.swift in Sources */,
+				C3DDDAF226B030E6003CB74A /* KeyChainService.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				C3FD470E26836A5400FDB4A6 /* tldlist.swift in Sources */,
 				C32E5167267CBD3A0038AF59 /* DNSLookup.m in Sources */,
